@@ -1,0 +1,76 @@
+2013-05-22 | version 1.2 | Author: Danny Ruijters, Luca Caucci
+_______________________________________________
+* Added support for layered textures
+* Added makefiles for CUDA5 in the samples
+
+
+2012-10-31 | version 1.1 | Author: Danny Ruijters
+_______________________________________________
+* Added 1D cubic interpolation routines
+* Several small fixes
+* Added Accuracy test sample for prefiltered 1D, 2D and 3D textures
+
+
+2010-10-05 | version 1.0 | Author: Danny Ruijters
+_______________________________________________
+* The prefilter is now initialized for clamping (instead of mirroring) boundary conditions, which is consistent with CUDA texture lookups.
+* Changed the prefilter and memcpu.cu functions to use pitched pointers in order to cope with non-power-of-two data.
+* All example programs now use this pitched pointer.
+
+
+2010-05-24 | version 0.9 | Author: Tamas Farago
+_______________________________________________
+* Small bug fix in the "SamplesToCoefficients3DZ" function.
+
+
+2010-04-29 | version 0.8 | Author: Danny Ruijters
+_________________________________________________
+* Added 1st order b-spline derivatives and interpolation functions, called "cubicTex3D_1st_derivative_x", etc.
+* Renamed the cubic interpolation include files to "cubicTex3D.cu" and "cubicTex2D.cu".
+* Reorganized the "code" folder.* Added copy volume to texture function "CreateTextureFromVolume" to memcpy.cu.
+* Fixed some minor bugs in the cubic ray casting examples.
+
+
+2010-04-08 | version 0.7 | Author: Danny Ruijters
+_________________________________________________
+* Added support for vector data formats (such as RGBA).
+* Added avi sample to illustrate the use of the vector formats.
+* Renamed the cubic texture lookup functions to "cubicTex2D" and "cubicTex3D".
+* Made the names of the examples more consistant.
+* Added Makefiles to the cudaCubicRotate2D, cudaCubicTexture3D, cudaCubicRayCast, and glCubicRayCast examples for compilation on the mac and linux.
+* Added readme.txt in examples to explain how to compile with CUDA SDK 3.0
+
+
+2009-12-28 | version 0.6 | Author: Danny Ruijters
+_________________________________________________
+* Added OpenGL ray-casting example "glCubicRayCast" using tri-cubic interpolation, without using CUDA.
+
+
+2009-11-24 | version 0.5 | Author: Danny Ruijters
+_________________________________________________
+* Small fix in template function in memcpy.cu to make it also compile with CUDA 2.3.
+* Changed all constants from double to float notation.
+
+
+2009-02-20 | version 0.4 | Author: Danny Ruijters
+_________________________________________________
+* Small fix in template call in memcpy.cu to make it also compile with CUDA 2.1.
+
+
+2009-01-25 | version 0.3 | Author: Danny Ruijters
+_________________________________________________
+* Small bugfix in the SSE code in examples/referenceCubicTexture3D, provided by Alfred R. Fuller.
+* Updated the internet address, since the webpage has moved.
+* Corrected the name of the CastVolumeHostToDevice function in memcpy.cu
+
+
+2008-10-12 | version 0.2 | Author: Danny Ruijters
+_________________________________________________
+* Added SSE and multi-threading support to the reference application, in order to obtain fair performance comparisons.
+* Fixed the internet address in the text at the top in the source files.
+* Added macros for enabling / disabling display output in the simpleCubicTexture3D and referenceCubicTexture3D examples, in order to profile the interpolation performance.
+
+
+2008-10-06 | version 0.1 | Author: Danny Ruijters
+_________________________________________________
+* Initial version
