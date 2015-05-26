@@ -21,26 +21,22 @@ If you want to simply replace linear interpolation by cubic filtering,
 then all you need to do is to include the appropriate header and replace
 your `tex1D`, `tex2D` and `tex3D` calls by one of the following:
 
-1D textures:
+1D textures:\
+ `cubicTex1D(texture tex, float x)`\
 
- `cubicTex1D(texture tex, float x)`
-
-2D textures:
-
- `cubicTex2D(texture tex, float x, float y)`
+2D textures:\
+ `cubicTex2D(texture tex, float x, float y)`\
  `cubicTex2D(texture tex, float2 coord)`
 
-3D textures:
-
- `cubicTex3D(texture tex, float x, float y, float z)`
+3D textures:\
+ `cubicTex3D(texture tex, float x, float y, float z)`\
  `cubicTex3D(texture tex, float3 coord)`
 
 Whereby the texture coordinates `coord` are expressed in absolute pixel
 respectively voxel coordinates (thus not in normalized coordinates).
 
 It is also possible to query the cubicly filtered 1st order derivative
-of the texture at a coordinate `coord`; e.g. in the x-direction: 
-
+of the texture at a coordinate `coord`; e.g. in the x-direction: \
  `cubicTex3D_1st_derivative_x(texture tex, float3 coord)`
 
 The calls for the y- and z-direction are similar, and also the
@@ -62,11 +58,11 @@ pre-filter the texture, as is beautifully described by [Philippe
 Thévenaz *et al.*](http://bigwww.epfl.ch/thevenaz/interpolation/)
 
 Luckily, CI also provides a CUDA implementation of this prefilter, and
-using it is rather simple. The interface for the 2D case is:
+using it is rather simple. The interface for the 2D case is:\
 
 `CubicBSplinePrefilter2D(float* image, uint pitch, uint width, uint height);`
 
-and for the 3D case:
+and for the 3D case:\
 
 `CubicBSplinePrefilter3D(float* volume, uint pitch, uint width, uint height, uint depth);`
 
@@ -83,14 +79,14 @@ Getting your data there
 
 In order to make your even easier, CI also provides some routines to
 transfer your data to the GPU memory, and back. Copying your sample
-values to the GPU memory can be accomplished by this function:
+values to the GPU memory can be accomplished by this function:\
 
-`cudaPitchedPtr CopyVolumeHostToDevice(const float* host, uint width, uint height, uint depth);`
+`cudaPitchedPtr CopyVolumeHostToDevice(const float* host, uint width, uint height, uint depth);`\
 
 The routine allocates GPU memory and copies the sample values from CPU
 to GPU memory. The pointer to the CPU memory is passed as `host`, and a
 pointer to the GPU memory is returned. The counterpart that copies data
-from the GPU memory to the CPU memory is called:
+from the GPU memory to the CPU memory is called:\
 
 `void CopyVolumeDeviceToHost(float* host, cudaPitchedPtr device, uint width, uint height, uint depth);`
 
@@ -102,7 +98,7 @@ Often you will have your original data in a different format than
 `float`, and for large data sets it costs some time (and memory) to cast
 everything to `float`. Therefore CI also provides a number of functions
 that copy and cast your data immediately to `float` on the GPU, which is
-faster and easier. In C++ you can use the following template function:
+faster and easier. In C++ you can use the following template function:\
 
 `template extern cudaPitchedPtr CastVolumeHostToDevice(const T* host, uint width, uint height, uint depth);`
 
@@ -112,7 +108,7 @@ except that `host` can be of the type `uchar`, `schar`, `ushort` or
 the maximum value (e.g. 255 for `uchar`) will be mapped to 1.0.
 
 The following function can be used to copy the output of the pre-filter
-functions into a texture:
+functions into a texture:\
 
 `void CreateTextureFromVolume(texture* tex, cudaArray** texArray, const cudaPitchedPtr volume, cudaExtent extent, bool onDevice);`
 
@@ -120,12 +116,12 @@ Using layered textures
 ----------------------
 
 It is possible to use the cubic interpolation texture lookups with
-layered textures. In order to do this, you need to add:
- `#define cudaTextureType2DLayered`
- to your code, and replace the calls to:
- `tex2DLayered(texture tex, float x, float y, int layer)`
- with:
- `cubicTex2DLayered(texture tex, float x, float y, int layer)`
+layered textures. In order to do this, you need to add:\
+ `#define cudaTextureType2DLayered`\
+ to your code, and replace the calls to:\
+ `tex2DLayered(texture tex, float x, float y, int layer)`\
+ with:\
+ `cubicTex2DLayered(texture tex, float x, float y, int layer)`\
  For 1D it works similarly.
 
 Example programs
