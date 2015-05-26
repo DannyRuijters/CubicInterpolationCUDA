@@ -27,12 +27,12 @@ your `tex1D`, `tex2D` and `tex3D` calls by one of the following:
 
 2D textures:
 
- `cubicTex2D(texture tex, float x, float y)`
+ `cubicTex2D(texture tex, float x, float y)`  
  `cubicTex2D(texture tex, float2 coord)`
 
 3D textures:
 
- `cubicTex3D(texture tex, float x, float y, float z)`
+ `cubicTex3D(texture tex, float x, float y, float z)`  
  `cubicTex3D(texture tex, float3 coord)`
 
 Whereby the texture coordinates `coord` are expressed in absolute pixel
@@ -120,12 +120,12 @@ Using layered textures
 ----------------------
 
 It is possible to use the cubic interpolation texture lookups with
-layered textures. In order to do this, you need to add:
- `#define cudaTextureType2DLayered`
- to your code, and replace the calls to:
- `tex2DLayered(texture tex, float x, float y, int layer)`
- with:
- `cubicTex2DLayered(texture tex, float x, float y, int layer)`
+layered textures. In order to do this, you need to add:  
+ `#define cudaTextureType2DLayered`  
+ to your code, and replace the calls to:  
+ `tex2DLayered(texture tex, float x, float y, int layer)`  
+ with:  
+ `cubicTex2DLayered(texture tex, float x, float y, int layer)`  
  For 1D it works similarly.
 
 Example programs
